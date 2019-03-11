@@ -1,0 +1,18 @@
+This is a re-write of the SG WhatsApp Weather App taking a different approach. In https://github.com/maxng07/sg-weather-forecast, the App loads the data set from Storage, and updates the data storage regularly.
+In this re-write, the server-less function does a direct API call to the remote API Server to obtain the JSON data. Every invokation of the function will trigger a API HTTPS GET request. Though this is less efficient and ideal, but this automates the APP as Twilio Assets today cannot be updated via API, hopefully in the near future.
+
+Several enhancements has also been added after receiving a lot of feedback from reviewers and this has been incorporated with this rewrite.
+The enhancements includes:
+1. Direct API calls to GovTech API using AXIOS modules with query parameter using date module - though inefficient and my app may be classified as DOS if too frequently invoked.
+2. Improve overall logic on the app. thanks to Dave.
+3. Aesthetic improvement, remove trailing comma, Capital on first character for Town name.
+4. Include valid timestamp on each weather forecast response, to avoid user having to check regularly.
+5. Null handling or invalid key word handling to guide user along.
+6. Error handling if NEA API server is unavailable and informs user.
+
+The latency for response is expected to go up and based on limited testing on a cold function, it takes approx 1200 to 1500ms for the function to fetch and execute the logic. On a warm function, it takes approx 400-600ms.
+The valid keyword to use
+All - print out the complete JSON array for Area and Forecast
+Area - print out the complete Area name of the JSON array
+Area-name - print out the forecast value for the area key
+"Any other words" - print out a message to guide the user.
