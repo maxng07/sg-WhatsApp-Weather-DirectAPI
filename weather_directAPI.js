@@ -1,15 +1,16 @@
 const axios = require('axios');
 const date = require('date-and-time');
 
-//obtain current UTC time with +GMT8 offset and shorten into a single variable with data.format and offset
-const now = date.format(date.addHours(new Date(), +8), 'YYYY-MM-DDTHH:mm:ss');  
-const addr = 'https://api.data.gov.sg/v1/environment/2-hour-weather-forecast?date_time='+now ;
-console.log(addr);
-var jsonobj1 = []; //global variable to hold the axios response
+
 exports.handler = function(context, event, callback) {
     const body = event.Body ? event.Body.toLowerCase(): null ;
     let twiml = new Twilio.twiml.MessagingResponse();
     let key = body;
+    //obtain current UTC time with +GMT8 offset and shorten into a single variable with data.format and offset
+    const now = date.format(date.addHours(new Date(), +8), 'YYYY-MM-DDTHH:mm:ss');  
+    const addr = 'https://api.data.gov.sg/v1/environment/2-hour-weather-forecast?date_time='+now ;
+    console.log(addr);
+    let jsonobj1 = []; //global variable to hold the axios response
   
     return axios.get(addr).then(response => {
     jsonobj = JSON.stringify(response.data.items).substr(1,JSON.stringify(response.data.items).length-2);
