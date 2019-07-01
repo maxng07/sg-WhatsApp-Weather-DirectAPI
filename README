@@ -13,7 +13,7 @@ The enhancements includes:
 
 The latency for response is expected to go up and based on limited testing on a cold function, it takes approx 1200 to 1500ms for the function to fetch and execute the logic. On a warm function, it takes approx 400-600ms.
 The valid keyword to use
-All - print out the complete JSON array for Area and Forecast
+All - print out the complete JSON array for Area and Forecast. Currently Twilio Messaging Platform has a length limit of 1600 characters. The raw array would exceed this length. 
 Area - print out the complete Area name of the JSON array
 Area-name - print out the forecast value for the area key
 "Any other words" - print out a message to guide the user.
