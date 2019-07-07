@@ -1,6 +1,6 @@
 This is a re-write of the SG WhatsApp Weather App taking a different approach. In https://github.com/maxng07/sg-weather-forecast, the App loads the key value JSON data set from Storage, and there is a need to update the JSON data storage regularly.
 In this re-write, the server-less function does a direct API call to the remote API Server to obtain the latest JSON data. Every invokation of the function will trigger a API or HTTPS GET request. Though this is less efficient and ideal, but this automates the APP as Twilio Assets (data storage) today cannot be updated via API, hopefully possible in the near future.
-Current solution make use of Twilio Server-less Function (which is hosted on Amz lambda) and Twilio API for WhatsApp. Application logic can be run off any Server-less function with Nodejs runtime or any container or VM. As this is using Serverless, there is no package.json. The only dependency/module used is AXIOS.
+Current solution make use of Twilio Server-less Function (which is hosted on Amz lambda) and Twilio API for WhatsApp. Application logic can be run off any Server-less function with Nodejs runtime or any container or VM. As this is using Serverless, there is no package.json. The dependencies/module used is AXIOS and data-and-time.
 
 Several enhancements has also been added after receiving a lot of feedback from reviewers and this has been incorporated with this rewrite.
 The enhancements includes:
