@@ -1,7 +1,6 @@
 const axios = require('axios');
 const date = require('date-and-time');
 
-
 exports.handler = function(context, event, callback) {
     const body = event.Body ? event.Body.toLowerCase(): null ;
     let twiml = new Twilio.twiml.MessagingResponse();
@@ -27,19 +26,19 @@ exports.handler = function(context, event, callback) {
     var keyarea = "" ; // to obtain the matched area
     var timestamp = (jsonobj1.valid_period.end).substr(0,10) + " " + (jsonobj1.valid_period.end).substr(11,5) +"h" ; // print valid timestamp
 
-//obtaining the value property of the key matched in the key-value array
+//obtaining the value property of the key matched in the returned axios key-value array
 for (var i = 0; i < jsonobj1.forecasts.length; i++){
      var obj =jsonobj1.forecasts[i] ;  
     //Check for a special key 
      if (key === "all") {
     // Print out the whole JS array 
-    // Currently Twilio Messaging Platform has a length limit of 1600 characters. The raw json array would exceed this length. 
-        keyval = JSON.stringify(jsonobj1.forecasts);
-        msg = 2 ;
-        break ;
+    // Currently Twilio Messaging Platform has a length limit of 1600 characters. The raw json array would exceed this length. Parse the array to obtain only the "area" and "forecast" field 
+        keyval += jsonobj1.forecasts[i].area + " : " + jsonobj1.forecasts[i].forecast + "\n" ;
+        console.log(keyval);
+        msg = 2;
     }
 
-    // check for key "area" to print out all the avail regions
+    // check for key "area" to print out all the avail regions/area.
     else if
     (key === "area") {
         var x = "area" ;
